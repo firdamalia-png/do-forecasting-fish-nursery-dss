@@ -1,0 +1,5 @@
+step,rows
+initial_rows,5376
+duplicated_pond_timestamp,0
+invalid_or_missing_sensor_rows,0
+final_clean_rows,5376

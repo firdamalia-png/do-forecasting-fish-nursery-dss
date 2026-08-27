@@ -1,0 +1,5 @@
+pond,observations,start_time,end_time,median_interval_minutes,non_15min_intervals
+Catfish,1344,2026-01-01,2026-01-14 23:45:00,15.0,0
+Gourami,1344,2026-01-15,2026-01-28 23:45:00,15.0,0
+Nilem,1344,2026-02-12,2026-02-25 23:45:00,15.0,0
+Tilapia,1344,2026-01-29,2026-02-11 23:45:00,15.0,0

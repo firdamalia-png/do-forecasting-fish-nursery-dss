@@ -1,0 +1,79 @@
+{
+  "seeds_used_this_run": [
+    42,
+    7,
+    123,
+    2024,
+    99
+  ],
+  "quick_test_mode": false,
+  "window_steps": 24,
+  "forecast_horizons_steps": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "sampling_interval_minutes": 15,
+  "n_blocks_for_walkforward": 5,
+  "fold_specs": [
+    {
+      "fold": 1,
+      "train_blocks": [
+        0,
+        1
+      ],
+      "val_block": 2,
+      "test_block": 3
+    },
+    {
+      "fold": 2,
+      "train_blocks": [
+        0,
+        1,
+        2
+      ],
+      "val_block": 3,
+      "test_block": 4
+    }
+  ],
+  "fold_ids_run_this_session": [
+    0,
+    1,
+    2
+  ],
+  "multiseed_folds": [
+    0
+  ],
+  "selected_architecture": {
+    "units": 96,
+    "dropout": 0.2,
+    "lr": 0.001,
+    "dense_layer_units": 32,
+    "epochs_max": 120,
+    "batch_size": 32,
+    "early_stopping_patience": 15
+  },
+  "feature_set_sizes": {
+    "Raw_LSTM": 58,
+    "Raw_GRU": 58,
+    "LSTM_Suitability": 88,
+    "LSTM_Excursion": 74,
+    "LSTM_Stability": 76,
+    "Full_Assessment_Guided_LSTM": 122,
+    "Full_Assessment_GRU": 122,
+    "GRU_NBeats_lite": 58,
+    "CNN_GRU_Attention": 58
+  },
+  "model_family_per_scenario": {
+    "Raw_LSTM": "lstm",
+    "LSTM_Suitability": "lstm",
+    "LSTM_Excursion": "lstm",
+    "LSTM_Stability": "lstm",
+    "Full_Assessment_Guided_LSTM": "lstm",
+    "Raw_GRU": "gru",
+    "Full_Assessment_GRU": "gru",
+    "GRU_NBeats_lite": "gru_nbeats",
+    "CNN_GRU_Attention": "cnn_gru_attention"
+  }
+}

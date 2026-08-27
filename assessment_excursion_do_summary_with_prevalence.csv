@@ -1,0 +1,5 @@
+pond,event_count,total_duration_hours,max_duration_hours,excursion_rate,n_timestamps,n_low_do_timestamps,positive_prevalence_pct
+Catfish,0,0.0,0.0,0.0,1344,0,0.0
+Gourami,82,78.25,11.0,0.23288690476190477,1344,313,23.29
+Nilem,45,26.0,7.25,0.07738095238095238,1344,104,7.74
+Tilapia,73,44.0,9.25,0.13095238095238096,1344,176,13.1

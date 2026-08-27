@@ -1,0 +1,47 @@
+{
+  "window_and_horizons": {
+    "sequence_window_steps": 24,
+    "sequence_window_minutes": 360,
+    "forecast_horizons_steps": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "forecast_horizons_minutes": [
+      15,
+      30,
+      45,
+      60
+    ],
+    "sampling_interval_minutes": 15
+  },
+  "suitability_score_formula": {
+    "temp_score / ph_score": "3 if value in optimal_range; 2 if value in operational_range (but not optimal); 1 otherwise",
+    "do_score": "3 if do >= do_opt_threshold; 2 if do_ops_threshold <= do < do_opt_threshold; 1 if do < do_ops_threshold",
+    "pond_score": "mean(temp_score, ph_score, do_score)",
+    "do_gap_ops": "do - do_ops_threshold  (negative => below operational limit)",
+    "do_gap_opt": "do - do_opt_threshold  (negative => below optimal limit)",
+    "rolling suitability features": "rolling mean/sum of the above scores over the trailing W in {4,8,24} timesteps, min_periods=W (no forward-looking values; first W-1 rows of each pond series are NaN and dropped)"
+  },
+  "excursion_formula": {
+    "do_excursion_flag": "1 if do < do_ops_threshold else 0",
+    "do_warning_flag": "1 if do_ops_threshold <= do < do_opt_threshold else 0",
+    "do_excursion_duration_steps": "running count of consecutive prior timesteps (including current) with do_excursion_flag == 1; resets to 0 on the first non-excursion step",
+    "do_excursion_duration_minutes": "do_excursion_duration_steps * 15",
+    "rolling excursion features": "rolling mean/sum of do_excursion_flag / do_warning_flag over trailing W in {4,8,24} timesteps, min_periods=W"
+  },
+  "stability_formula": {
+    "{var}_roll_sd{W}": "rolling standard deviation of temp/ph/do over the trailing W in {4,8,24} timesteps, min_periods=W",
+    "{var}_roll_cv{W}": "{var}_roll_sd{W} / {var}_roll_mean{W}  (coefficient of variation)"
+  },
+  "temporal_features_formula": {
+    "{var}_lag{L}": "value of temp/ph/do exactly L timesteps ago, L in {1,2,3,4,8,12,24}",
+    "{var}_roll_mean{W}/_roll_min{W}/_roll_max{W}": "rolling statistic of temp/ph/do over trailing W in {4,8,24} timesteps, min_periods=W",
+    "hour_sin / hour_cos": "sin/cos encoding of time-of-day, period = 24h",
+    "day_index": "elapsed days since the first observation of that pond's monitoring period",
+    "pond_* (one-hot)": "one-hot indicator of pond identity"
+  },
+  "no_future_leakage_guarantee": "All lag and rolling-window operations use pandas .shift()/.rolling() in the default (backward-looking, non-centered) mode with min_periods=window, computed independently per pond after chronological sorting. A feature at row t therefore uses only observations at or before t. This is verified programmatically in the 'Leakage / temporal-alignment audit' cell below, which recomputes a random sample of features directly from the raw series and checks for exact agreement.",
+  "boundary_sample_handling": "Any row where a lag/rolling feature is undefined (the first max(LAGS, WINDOWS)-1 timesteps of each pond) is NaN. A training/eval sequence of length WINDOW is discarded entirely if it contains ANY NaN across its window or in its target horizons (see make_sequences()). This is why the number of valid sequences per pond (~1,293) is slightly lower than the naive count 1344-WINDOW-max(HORIZONS)+1=1317 reported in the previous manuscript draft; the revised manuscript text should use the corrected count."
+}

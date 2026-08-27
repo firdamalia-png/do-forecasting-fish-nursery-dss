@@ -1,0 +1,6 @@
+{
+  "n_feature_columns_audited": 30,
+  "n_row_checks_performed": 800,
+  "n_mismatches_found": 0,
+  "conclusion": "PASS - no forward-looking feature detected"
+}

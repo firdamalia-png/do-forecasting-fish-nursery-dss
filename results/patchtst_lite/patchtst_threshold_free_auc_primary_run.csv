@@ -1,0 +1,5 @@
+model,horizon,roc_auc,pr_auc,scenario,fold,seed
+PatchTST_lite__fold0__seed42,15 min,0.955526415571284,0.7668601138926631,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,30 min,0.9533963859072713,0.7667092186499931,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,45 min,0.9507488157705866,0.7613930196341868,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,60 min,0.952806264852709,0.770781352781237,PatchTST_lite,0,42

@@ -1,0 +1,21 @@
+model,horizon,threshold_scale,recall,precision,n_positive,scenario,fold,seed
+PatchTST_lite__fold0__seed42,15 min,0.8,0.0,0.0,5,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,15 min,0.9,0.5161290322580645,0.41025641025641024,31,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,15 min,1.0,0.8478260869565217,0.5777777777777777,92,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,15 min,1.1,0.9593023255813954,0.7051282051282052,172,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,15 min,1.2,0.9641434262948207,0.8175675675675675,251,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,30 min,0.8,0.0,0.0,5,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,30 min,0.9,0.3333333333333333,0.38461538461538464,30,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,30 min,1.0,0.7582417582417582,0.6330275229357798,91,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,30 min,1.1,0.9302325581395349,0.7339449541284404,172,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,30 min,1.2,0.9561752988047809,0.8333333333333334,251,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,45 min,0.8,0.0,0.0,5,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,45 min,0.9,0.3448275862068966,0.37037037037037035,29,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,45 min,1.0,0.7802197802197802,0.6120689655172413,91,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,45 min,1.1,0.936046511627907,0.7155555555555555,172,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,45 min,1.2,0.9561752988047809,0.8333333333333334,251,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,60 min,0.8,0.0,0.0,5,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,60 min,0.9,0.4827586206896552,0.4,29,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,60 min,1.0,0.8131868131868132,0.5692307692307692,91,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,60 min,1.1,0.953757225433526,0.7205240174672489,173,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,60 min,1.2,0.9681274900398407,0.823728813559322,251,PatchTST_lite,0,42

@@ -1,0 +1,2 @@
+scenario,decision_accuracy_mean,decision_accuracy_sd,decision_accuracy_ci_low,decision_accuracy_ci_high,n_seeds
+PatchTST_lite,0.9256410256410256,0.005661385170723015,0.9186114874945741,0.932670563787477,5

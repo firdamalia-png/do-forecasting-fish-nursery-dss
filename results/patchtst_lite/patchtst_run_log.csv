@@ -1,0 +1,8 @@
+scenario,family,fold,seed,n_features,n_train,n_val,n_test,epochs_ran,best_val_loss,train_seconds
+PatchTST_lite,patchtst_lite,0,42,58,3620,772,780,31,0.145941823720932,35.3
+PatchTST_lite,patchtst_lite,0,7,58,3620,772,780,33,0.19445620477199554,29.1
+PatchTST_lite,patchtst_lite,0,123,58,3620,772,780,28,0.1431552767753601,28.5
+PatchTST_lite,patchtst_lite,0,2024,58,3620,772,780,22,0.14865556359291077,22.7
+PatchTST_lite,patchtst_lite,0,99,58,3620,772,780,33,0.15335941314697266,27.8
+PatchTST_lite,patchtst_lite,1,42,58,2072,1032,1036,28,0.14682255685329437,24.1
+PatchTST_lite,patchtst_lite,2,42,58,3104,1036,1032,36,0.1587492823600769,25.7

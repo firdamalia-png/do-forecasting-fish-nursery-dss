@@ -1,0 +1,5 @@
+model,horizon_step,horizon,n_actual_events_total,n_detected_events_total,event_recall,n_pred_events_total,n_false_alarm_events_total,scenario,fold,seed
+PatchTST_lite__fold0__seed42,1,15 min,37,27,0.7297297297297297,10,2,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,2,30 min,38,24,0.631578947368421,10,2,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,3,45 min,38,25,0.6578947368421053,11,2,PatchTST_lite,0,42
+PatchTST_lite__fold0__seed42,4,60 min,38,26,0.6842105263157895,10,1,PatchTST_lite,0,42

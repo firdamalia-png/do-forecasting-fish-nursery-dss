@@ -1,18 +1,18 @@
-# AIoT-Based Multi-Horizon DO Forecasting and Decision Support for Fish Nursery Ponds  
-## Revised Results Reproducibility Package (IJIES Submission No. 20265445)
+# AIoT-Based Multi-Horizon DO Forecasting and Decision Support for Fish Nursery Ponds
 
-This repository contains the reproducibility package for the revised manuscript submitted to **INASS / IJIES**:
+## Reproducibility Package — IJIES Submission No. 20265445
 
-**“An interpretable AIoT framework for dissolved oxygen forecasting and decision support in fish nursery ponds”**  
-(Title may follow the final manuscript wording.)
+This repository contains the reproducibility package for the revised manuscript:
+
+**Assessment-Guided Multi-Horizon LSTM for Dissolved Oxygen Risk Prediction in an AIoT Fish Nursery Decision Support System**
 
 The package provides:
-- the **legacy revised experiment notebook** used for the main manuscript analyses,
-- the **frozen-protocol PatchTST-only notebook** added during second review,
-- processed datasets and split metadata,
-- result tables used in the manuscript,
-- supporting figures,
-- and configuration / audit files for reproducibility.
+- the legacy revised experiment notebook used for the main manuscript analyses;
+- the frozen-protocol PatchTST-only notebook added during the second review;
+- raw and processed datasets plus split metadata;
+- model-level result tables and uncertainty analyses;
+- supporting figures; and
+- configuration, leakage-audit, and reproducibility files.
 
 ---
 
@@ -21,30 +21,14 @@ The package provides:
 The study develops an **AIoT-based decision support system (DSS)** for fish nursery pond management using multi-horizon dissolved oxygen (DO) forecasting and temporal assessment context.
 
 The framework combines:
-- **IoT-based water quality monitoring**
-- **Temporal assessment features**
-  - suitability
-  - excursion
-  - stability
-- **Multi-horizon DO forecasting**
-  - 15, 30, 45, and 60 min horizons
-- **Risk-aware DSS outputs**
-  - current assessment
-  - predicted low-DO risk
-  - alert / action recommendation
+- **IoT-based water-quality monitoring**;
+- **temporal assessment features**: suitability, excursion, and stability;
+- **multi-horizon DO forecasting** at 15, 30, 45, and 60 minutes; and
+- **risk-aware DSS outputs** including current assessment, predicted low-DO risk, and operational recommendations.
 
-The main proposed configuration in the manuscript is:
+The main proposed configuration is the **Full Assessment-Guided LSTM**.
 
-- **Full Assessment-Guided LSTM**
-
-During the **second review**, a stronger contemporary comparator was added:
-
-- **PatchTST-lite**
-
-Importantly, the PatchTST experiment was run under a **frozen protocol**:
-- the original legacy models were **not retrained**,
-- the original preprocessing / splits / evaluation pipeline were preserved,
-- only the PatchTST-lite comparator was added under the same evaluation logic.
+During the second review, **PatchTST-lite** was added as a stronger contemporary comparator. The PatchTST experiment uses a **frozen protocol**: the legacy models were not retrained, the original preprocessing/splits/evaluation pipeline was preserved, and only the new comparator was added.
 
 ---
 
@@ -100,190 +84,192 @@ Importantly, the PatchTST experiment was run under a **frozen protocol**:
     ├── fold1_test_timestamps.csv
     ├── fold2_test_timestamps.csv
     └── sequence_split_summary_all_folds.csv
+```
 
+---
 
-3. Notebook roles
-notebooks/Revised_Design_Experiment.ipynb
-This is the main legacy notebook used to produce the revised manuscript results before the PatchTST-lite addition. It contains the main experimental pipeline for:
-baseline and assessment-guided forecasting,
-low-DO sensitivity evaluation,
-decision-level metrics,
-uncertainty analysis,
-rolling-origin validation,
-and supporting diagnostic outputs.
-notebooks/PatchTST_Only_Frozen_Protocol_IJIES.ipynb
-This notebook was created specifically for the second review to add PatchTST-lite as a contemporary benchmark while preserving the original protocol.
-It:
-keeps the legacy evaluation framework fixed,
-evaluates only the PatchTST-lite comparator,
-outputs results under results/patchtst_lite/.
+## 3. Notebook roles
 
+### `notebooks/Revised_Design_Experiment.ipynb`
 
-4. Main experiment groups
-4.1 Legacy models
+Main legacy notebook used to generate the revised manuscript results before the PatchTST-lite addition. It contains:
+- baseline and assessment-guided forecasting;
+- low-DO sensitivity evaluation;
+- decision-level metrics;
+- uncertainty analysis;
+- rolling-origin validation; and
+- supporting diagnostic outputs.
+
+### `notebooks/PatchTST_Only_Frozen_Protocol_IJIES.ipynb`
+
+Second-review notebook used only to evaluate PatchTST-lite under the frozen protocol. It:
+- preserves the legacy evaluation framework;
+- evaluates only the PatchTST-lite comparator; and
+- writes PatchTST-specific outputs under `results/patchtst_lite/`.
+
+---
+
+## 4. Main experiment groups
+
+### 4.1 Legacy models
+
 The legacy experiment set includes:
-Persistence baseline
-Raw LSTM
-Raw GRU
-Full Assessment GRU
-LSTM + Suitability
-LSTM + Excursion
-LSTM + Stability
-Full Assessment-Guided LSTM
-GRU-N-Beats-lite
-CNN-GRU-Attention
-These outputs are stored under:
-results/legacy/
+- Persistence baseline
+- Raw LSTM
+- Raw GRU
+- Full Assessment GRU
+- LSTM + Suitability
+- LSTM + Excursion
+- LSTM + Stability
+- Full Assessment-Guided LSTM
+- GRU-N-Beats-lite
+- CNN-GRU-Attention
 
-4.2 Second-review comparator
-Added in response to the editor’s second review:
-PatchTST-lite
-These outputs are stored under:
-results/patchtst_lite/
+Legacy outputs are stored under `results/legacy/`.
 
+### 4.2 Second-review comparator
 
-5. Result folders
-results/legacy/regression/
-Stores horizon-wise regression outputs for the legacy experiment set.
-Typical file:
-regression_metrics_all_runs.csv
-results/legacy/low_do/
-Stores low-DO sensitivity metrics for the legacy models.
-Typical file:
-low_do_metrics_all_runs.csv
-results/legacy/decision/
-Stores decision-level metrics.
-Typical file:
-decision_level_metrics_all_runs.csv
-results/legacy/uncertainty/
-Stores uncertainty analyses from repeated primary-split runs (multi-seed).
-Typical files:
-decision_accuracy_uncertainty_fold0_multiseed.csv
-rmse_uncertainty_fold0_multiseed.csv
-recall_uncertainty_fold0_multiseed.csv
-significance_tests_fold0_multiseed.csv
-results/legacy/rolling_origin/
-Stores rolling-origin validation outputs.
-Typical file:
-rmse_across_rolling_origin_folds.csv
-results/legacy/event_based/
-Stores event-level low-DO detection analysis.
-Typical file:
-event_based_metrics_primary_run.csv
-results/legacy/threshold_analysis/
-Stores threshold sensitivity and threshold-free discrimination metrics.
-Typical files:
-threshold_sensitivity_primary_run.csv
-threshold_free_auc_primary_run.csv
-results/legacy/prediction_audits/
-Stores model-specific prediction audits.
-Typical files:
-prediction_audit_*.csv
-results/legacy/assessment/
-Stores temporal assessment summaries.
-Typical files:
-assessment_suitability_summary.csv
-assessment_excursion_do_summary_with_prevalence.csv
-assessment_temporal_stability_summary.csv
-results/legacy/audits/
-Stores audit files.
-Typical file:
-leakage_audit_result.json
-results/legacy/logs/
-Stores execution logs.
-Typical file:
-run_log_timing.csv
-results/patchtst_lite/
-Stores PatchTST-lite outputs generated under the frozen second-review protocol.
-Typical files:
-patchtst_regression_metrics_all_runs.csv
-patchtst_low_do_metrics_all_runs.csv
-patchtst_decision_level_metrics_all_runs.csv
-patchtst_rmse_uncertainty_fold0_multiseed.csv
-patchtst_recall_uncertainty_fold0_multiseed.csv
-patchtst_decision_accuracy_uncertainty_fold0_multiseed.csv
-patchtst_rmse_across_rolling_origin_folds.csv
-patchtst_event_based_metrics_primary_run.csv
-patchtst_threshold_sensitivity_primary_run.csv
-patchtst_threshold_free_auc_primary_run.csv
-patchtst_run_log.csv
+The second-review addition is:
+- **PatchTST-lite**
 
+PatchTST outputs are stored under `results/patchtst_lite/`.
 
-6. Figures
-The figures/ folder contains figure files used to support manuscript interpretation.
-Current figures
-fig_rmse_model_comparison.png
-Multi-horizon RMSE comparison across the main benchmark models, including PatchTST-lite.
-fig_recall_lowdo_model_comparison.png
-Multi-horizon low-DO recall comparison across the main benchmark models, including PatchTST-lite.
-fig_ablation_rmse_with_uncertainty.png
-Ablation-style analysis focusing on assessment-guided LSTM variants.
-fig_fair_lstm_vs_gru.png
-Matched LSTM vs GRU comparison.
-fig_threshold_sensitivity.png
-Threshold sensitivity analysis for low-DO risk interpretation.
+---
 
+## 5. Result folders
 
-7. Data and split files
-Raw data
-data/raw/iot_data.csv
-Processed data
-data/processed/processed_iot_dataset_with_assessment.csv
-data/processed/processed_iot_dataset_with_features.csv
-Split metadata
-splits/fold0_test_timestamps.csv
-splits/fold1_test_timestamps.csv
-splits/fold2_test_timestamps.csv
-splits/sequence_split_summary_all_folds.csv
+- `results/legacy/regression/` — horizon-wise regression outputs.
+- `results/legacy/low_do/` — low-DO sensitivity metrics.
+- `results/legacy/decision/` — decision-level metrics.
+- `results/legacy/uncertainty/` — multi-seed uncertainty and significance analyses.
+- `results/legacy/rolling_origin/` — rolling-origin robustness results.
+- `results/legacy/event_based/` — event-level low-DO detection.
+- `results/legacy/threshold_analysis/` — threshold sensitivity and threshold-free AUC analyses.
+- `results/legacy/prediction_audits/` — model-specific prediction audit files.
+- `results/legacy/assessment/` — temporal assessment summaries.
+- `results/legacy/audits/` — leakage-audit outputs.
+- `results/legacy/logs/` — execution/runtime logs.
+- `results/patchtst_lite/` — PatchTST-lite second-review outputs.
+
+Representative PatchTST files include:
+- `patchtst_regression_metrics_all_runs.csv`
+- `patchtst_low_do_metrics_all_runs.csv`
+- `patchtst_decision_level_metrics_all_runs.csv`
+- `patchtst_rmse_uncertainty_fold0_multiseed.csv`
+- `patchtst_recall_uncertainty_fold0_multiseed.csv`
+- `patchtst_decision_accuracy_uncertainty_fold0_multiseed.csv`
+- `patchtst_rmse_across_rolling_origin_folds.csv`
+- `patchtst_event_based_metrics_primary_run.csv`
+- `patchtst_threshold_sensitivity_primary_run.csv`
+- `patchtst_threshold_free_auc_primary_run.csv`
+- `patchtst_run_log.csv`
+
+---
+
+## 6. Figures
+
+The `figures/` folder contains manuscript-supporting visualizations.
+
+- `fig_rmse_model_comparison.png` — multi-horizon RMSE comparison, including PatchTST-lite.
+- `fig_recall_lowdo_model_comparison.png` — multi-horizon low-DO recall comparison, including PatchTST-lite.
+- `fig_ablation_rmse_with_uncertainty.png` — ablation analysis of assessment-guided LSTM variants.
+- `fig_fair_lstm_vs_gru.png` — matched LSTM-versus-GRU comparison.
+- `fig_threshold_sensitivity.png` — threshold sensitivity analysis.
+
+---
+
+## 7. Data and split files
+
+### Raw data
+- `data/raw/iot_data.csv`
+
+### Processed data
+- `data/processed/processed_iot_dataset_with_assessment.csv`
+- `data/processed/processed_iot_dataset_with_features.csv`
+
+### Exact split metadata
+- `splits/fold0_test_timestamps.csv`
+- `splits/fold1_test_timestamps.csv`
+- `splits/fold2_test_timestamps.csv`
+- `splits/sequence_split_summary_all_folds.csv`
+
 These files preserve the split logic used for the reported experiments.
 
+---
 
-8. Reproducibility notes
-Important clarification
-This repository reflects two stages of revision:
-Stage 1 — Major revision legacy package
+## 8. Reproducibility notes
+
+This repository reflects two revision stages.
+
+### Stage 1 — Major revision legacy package
+
 The first revised package generated:
-the legacy benchmark outputs,
-the assessment-guided LSTM analyses,
-rolling-origin validation,
-uncertainty outputs,
-and the main decision-support diagnostics.
-Stage 2 — Second review update
-The second review required comparison with a stronger recent model.
-For this reason:
-PatchTST-lite was added,
-but the legacy pipeline was kept frozen,
-meaning the original models were not rerun solely because PatchTST was added.
-This design was chosen to preserve comparability with the already revised manuscript and to avoid introducing unnecessary protocol drift.
+- the legacy benchmark outputs;
+- the assessment-guided LSTM analyses;
+- rolling-origin validation;
+- uncertainty outputs; and
+- decision-support diagnostics.
 
+### Stage 2 — Second-review update
 
-9. How to use
-To inspect the main manuscript pipeline
-Open:
-notebooks/Revised_Design_Experiment.ipynb
-To inspect the second-review PatchTST addition
-Open:
-notebooks/PatchTST_Only_Frozen_Protocol_IJIES.ipynb
-To trace manuscript tables and claims
-Use:
-results/legacy/ for the original revised experiment outputs
-results/patchtst_lite/ for the added PatchTST-lite comparator
+The second review required a stronger contemporary comparison. PatchTST-lite was therefore added under the same dataset, preprocessing, historical window, forecast horizons, split indices, scaling logic, and evaluation definitions.
 
+The legacy models were **not retrained or retuned solely because PatchTST-lite was added**. This frozen-protocol design avoids unnecessary experimental drift and keeps the second-review comparator traceable.
 
-10. Interpretation guidance
-This repository is consistent with the final revised manuscript interpretation:
-Raw LSTM is strongest for pure point-forecast RMSE.
-PatchTST-lite is a competitive contemporary comparator and is particularly relevant for timestamp-level low-DO sensitivity.
-Full Assessment-Guided LSTM remains the main integrative decision-oriented model because it embeds temporal assessment context into forecasting and DSS interpretation.
-The paper’s contribution is therefore not that one single model dominates every metric, but that the proposed AIoT framework connects:
-assessment context,
-forecasting, and
-operational decision support.
+---
 
+## 9. How to reproduce
 
-11. Contact / provenance
-Prepared as a reproducibility package for:
-IJIES / INASS submission no. 20265445
-Primary corresponding repository maintainer:
-Firda Amalia
-If this package is used in academic work, please cite the corresponding final manuscript version.
+### Legacy experiment
+
+1. Open `notebooks/Revised_Design_Experiment.ipynb` in Google Colab.
+2. Use `data/raw/iot_data.csv` when the notebook requests the raw IoT dataset.
+3. Run the quick-test mode first if enabled.
+4. Run the full configuration to regenerate the legacy result package.
+
+### PatchTST-lite second-review experiment
+
+1. Open `notebooks/PatchTST_Only_Frozen_Protocol_IJIES.ipynb`.
+2. Use the same raw IoT dataset and frozen experimental protocol.
+3. Run with `QUICK_TEST_MODE = True` for a smoke test.
+4. Set `QUICK_TEST_MODE = False`, restart the runtime, and run all cells.
+5. Compare the generated outputs with `results/patchtst_lite/`.
+
+---
+
+## 10. Interpretation guidance
+
+The repository is consistent with the final revised manuscript interpretation:
+
+- **Raw LSTM** provides the lowest point-forecast RMSE.
+- **PatchTST-lite** is a competitive contemporary Transformer-type comparator and provides strong timestamp-level low-DO sensitivity.
+- **Full Assessment-Guided LSTM** remains the main integrative, assessment-informed configuration because it links suitability, excursion, and stability context with forecasting and decision-oriented DSS interpretation.
+
+The manuscript therefore does **not** claim that one model dominates every metric. Its contribution is the integration of:
+1. temporal assessment context;
+2. multi-horizon DO forecasting; and
+3. operational decision support.
+
+---
+
+## 11. Evaluation protocol notes
+
+- Historical input window: **24 steps (6 hours)**.
+- Forecast horizons: **15, 30, 45, and 60 minutes**.
+- Primary split: chronological **70/15/15%** train/validation/test per pond.
+- Primary-split uncertainty: **five seeds** (`42, 7, 123, 2024, 99`).
+- Rolling-origin folds 1–2: **seed 42 only**.
+- Scaling parameters are fitted on each fold's training partition only.
+- PatchTST-lite uses the same **58 raw sensor + temporal features** used by the Raw LSTM/Raw GRU benchmark.
+
+---
+
+## 12. Contact and provenance
+
+Prepared as the reproducibility package for **IJIES / INASS Submission No. 20265445**.
+
+Repository maintainer and corresponding author:
+
+**Firda Amalia**
+
+If this package is used in academic work, please cite the corresponding final manuscript.
